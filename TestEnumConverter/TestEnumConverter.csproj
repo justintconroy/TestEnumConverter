@@ -4,4 +4,8 @@
     <OutputType>Exe</OutputType>
     <TargetFramework>net47</TargetFramework>
   </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\TestEnumModel\TestEnumModel.csproj" />
+  </ItemGroup>
 </Project>
