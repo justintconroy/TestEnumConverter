@@ -8,19 +8,27 @@ namespace TestEnumModel
     {
         public TestEnumMapperProfile()
         {
-            CreateMap<MyEntity, MyEntityDto>();
+            CreateMap<MyEntity, MyEntityDto>()
+                .ForMember(dest => dest.MyEnumField,
+                            opt => opt.MapFrom(src => src.MyEnum))
+                .ForMember(dest => dest.MyEnum,
+                            opt => opt.Ignore())
+                .ForMember(dest => dest.OtherEnumField,
+                            opt => opt.MapFrom(src => src.OtherEnum))
+                .ForMember(dest => dest.OtherEnum,
+                            opt => opt.Ignore());
 
-            //CreateMap<Enum, NamedEntityDto>()
-            //    .ForMember(dest => dest.Id,
-            //                opt => opt.Ignore())
-            //                //opt => opt.MapFrom(src => src))
-            //    .ForMember(dest => dest.Name,
-            //                opt => opt.MapFrom(src => src.ToString()));
-
-            CreateMap<Enum, NamedEnumDto>()
-                .ForMember(dest => dest.EnumValue,
+            CreateMap<Enum, NamedEntityDto>()
+                .ForMember(dest => dest.Id,
+                            //opt => opt.Ignore())
                             opt => opt.MapFrom(src => src))
-                .ForAllOtherMembers(opt => opt.Ignore());
+                .ForMember(dest => dest.Name,
+                            opt => opt.MapFrom(src => src.ToString()));
+
+            //CreateMap<Enum, NamedEnumDto>()
+            //    .ForMember(dest => dest.EnumValue,
+            //                opt => opt.MapFrom(src => src))
+            //    .ForAllOtherMembers(opt => opt.Ignore());
         }
     }
 }

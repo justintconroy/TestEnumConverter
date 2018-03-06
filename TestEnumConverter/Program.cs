@@ -37,9 +37,26 @@ namespace TestEnumConverter
                 //        }
                 //    }).ToList();
 
+                Enum value = MyEnum.one;
+
+                // Doesn't compile
+                //MyEnum enumValue = value;
+
+                var intValue = Convert.ToInt32(value);
+                var stringValue = value.ToString();
+
                 // This doesn't work.
                 var list = myEntities.ProjectTo<MyEntityDto>().ToList();
 
+
+                Console.WriteLine($"Singular Result: {result}");
+                Console.WriteLine("==========================");
+                Console.Write("List Results:");
+
+                foreach (var val in list)
+                {
+                    Console.WriteLine(val);
+                }
             }
         }
     }
