@@ -23,21 +23,19 @@ namespace TestEnumConverter
                 var result = Mapper.Map<MyEntityDto>(myEntities.FirstOrDefault());
 
                 // This hopefully works.
-                var linq = myEntities
-                    .Select(e => new MyEntityDto
-                    {
-                        Id = e.Id,
-                        MyEnum = new NamedEntityDto()
-                        {
-                            Id = (int) e.MyEnum,
-                            Name = e.MyEnum.ToString(),
-                        },
-                        OtherEnum = new NamedEntityDto()
-                        {
-                            Id = (int) e.OtherEnum,
-                            Name = e.OtherEnum.ToString(),
-                        }
-                    }).ToList();
+                //var linq = myEntities
+                //    .Select(e => new MyEntityDto
+                //    {
+                //        Id = e.Id,
+                //        MyEnum = new NamedEnumDto()
+                //        {
+                //            EnumValue = e.MyEnum
+                //        },
+                //        OtherEnum = new NamedEnumDto()
+                //        {
+                //            EnumValue = e.OtherEnum
+                //        }
+                //    }).ToList();
 
                 // This doesn't work.
                 var list = myEntities.ProjectTo<MyEntityDto>().ToList();
